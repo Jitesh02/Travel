@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Navbar = () => {
+    const [isOpenNested, setIsOpenNested] = useState(false);
+
     return (
         <header className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-white text-sm py-3 dark:bg-neutral-800 h-24">
             <nav className="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between">
@@ -69,12 +71,41 @@ const Navbar = () => {
                             >
                                 Beaches
                             </a>
-                            <a
-                                href="#"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
+                            <div
+                                className="relative"
+                                onMouseEnter={() => setIsOpenNested(true)}
+                                onMouseLeave={() => setIsOpenNested(false)}
                             >
-                                Mountains
-                            </a>
+                                <a
+                                    href="#"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
+                                >
+                                    Mountains
+                                </a>
+                                {/* Nested Dropdown */}
+                                {isOpenNested && (
+                                    <div className="absolute left-full top-0 bg-white shadow-md rounded-lg mt-0 w-40 dark:bg-neutral-700 z-20">
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
+                                        >
+                                            Himalayas
+                                        </a>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
+                                        >
+                                            Rockies
+                                        </a>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
+                                        >
+                                            Andes
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
                             <a
                                 href="#"
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-neutral-600"
